@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2018
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "shake", "shake\shake.vcxproj", "{DA470752-76A4-4BAF-875B-CBE0E889F65D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|VisualGDB = Debug|VisualGDB
+		Release|VisualGDB = Release|VisualGDB
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DA470752-76A4-4BAF-875B-CBE0E889F65D}.Debug|VisualGDB.ActiveCfg = Debug|VisualGDB
+		{DA470752-76A4-4BAF-875B-CBE0E889F65D}.Debug|VisualGDB.Build.0 = Debug|VisualGDB
+		{DA470752-76A4-4BAF-875B-CBE0E889F65D}.Release|VisualGDB.ActiveCfg = Release|VisualGDB
+		{DA470752-76A4-4BAF-875B-CBE0E889F65D}.Release|VisualGDB.Build.0 = Release|VisualGDB
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {821C9C5A-36F0-43A8-A5A5-97F2E390352F}
+	EndGlobalSection
+EndGlobal
