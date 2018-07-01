@@ -44,7 +44,7 @@
       <CPPLanguageStandard>
       </CPPLanguageStandard>
       <AdditionalIncludeDirectories>Inc;Drivers\CMSIS\Include;Drivers\CMSIS\Device\ST\STM32F4xx\Include;Drivers\STM32F4xx_HAL_Driver\Inc;Drivers\STM32F4xx_HAL_Driver\Inc\Legacy;%(ClCompile.AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>flash_layout;STM32F446xx;%(ClCompile.PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>DEBUG=1;flash_layout;STM32F446xx;%(ClCompile.PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalOptions />
       <CLanguageStandard />
     </ClCompile>
@@ -61,7 +61,7 @@
       <CPPLanguageStandard>
       </CPPLanguageStandard>
       <AdditionalIncludeDirectories>Inc;Drivers\CMSIS\Include;Drivers\CMSIS\Device\ST\STM32F4xx\Include;Drivers\STM32F4xx_HAL_Driver\Inc;Drivers\STM32F4xx_HAL_Driver\Inc\Legacy;%(ClCompile.AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>flash_layout;STM32F446xx;%(ClCompile.PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NDEBUG=1;RELEASE=1;flash_layout;STM32F446xx;%(ClCompile.PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalOptions />
       <CLanguageStandard />
     </ClCompile>
@@ -83,6 +83,10 @@
     <ClCompile Include="CppMain.cpp" />
     <ClCompile Include="CtoCpp.c" />
     <ClCompile Include="DigitalReadPin.cpp" />
+    <ClCompile Include="DigitalWritePin.cpp" />
+    <ClCompile Include="Moter.cpp" />
+    <ClCompile Include="PwmWritePin.cpp" />
+    <ClCompile Include="ServoC.c" />
     <ClCompile Include="Src\stm32f4xx_it.c" />
     <ClCompile Include="Src\stm32f4xx_hal_msp.c" />
     <ClCompile Include="Src\main.c" />
@@ -104,7 +108,12 @@
     <ClInclude Include="Controller.h" />
     <ClInclude Include="ControllerManager.h" />
     <ClInclude Include="DigitalReadPin.h" />
+    <ClInclude Include="DigitalWritePin.h" />
     <ClInclude Include="IReadPin.h" />
+    <ClInclude Include="IWritePin.h" />
+    <ClInclude Include="Moter.h" />
+    <ClInclude Include="PwmWritePin.h" />
+    <ClInclude Include="ServoC.h" />
     <None Include="stm32.props" />
     <ClCompile Include="$(BSP_ROOT)\STM32F4xxxx\StartupFiles\startup_stm32f446xx.c" />
     <ClInclude Include="CppMain.h" />
@@ -135,14 +144,5 @@
     <None Include="shake-Debug.vgdbsettings" />
     <None Include="shake-Release.vgdbsettings" />
     <None Include="stm32.xml" />
-    <ClCompile Include="$(EFP_BASE)\Profiler\FastSemihosting.cpp" />
-    <ClCompile Include="$(EFP_BASE)\Profiler\SamplingProfiler.cpp" />
-    <ClCompile Include="$(EFP_BASE)\Profiler\InstrumentingProfiler.cpp" />
-    <ClCompile Include="$(EFP_BASE)\Profiler\ProfilerRTOS_FreeRTOS.c" />
-    <ClInclude Include="$(EFP_BASE)\Profiler\SysprogsProfiler.h" />
-    <ClInclude Include="$(EFP_BASE)\Profiler\SmallNumberCoder.h" />
-    <ClInclude Include="$(EFP_BASE)\Profiler\SysprogsProfilerInterface.h" />
-    <ClInclude Include="$(EFP_BASE)\Profiler\ProfilerFreeRTOSHooks.h" />
-    <ClInclude Include="$(EFP_BASE)\Profiler\CustomRealTimeWatches.h" />
   </ItemGroup>
 </Project>

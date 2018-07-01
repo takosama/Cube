@@ -3,8 +3,7 @@
 
 
 ControllerManager::ControllerManager()
-{
-}
+= default;
 
 Controller* ControllerManager::CreateController()
 {
@@ -26,5 +25,4 @@ Controller* ControllerManager::CreateController()
 
 
 ControllerManager::~ControllerManager()
-{
-}
+= default;

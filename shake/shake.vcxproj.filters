@@ -88,12 +88,6 @@
     <Filter Include="VisualGDB settings">
       <UniqueIdentifier>{088f65bf-4d9f-4b92-8b5d-e6966017d040}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source files\Device-specific files\Semihosting/Profiler">
-      <UniqueIdentifier>{797f1ab7-9ad8-4781-a42b-7f89bc930621}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header files\Device-specific files\Semihosting/Profiler">
-      <UniqueIdentifier>{eabba0d7-83be-40d7-8810-6a49ad12b855}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Src\stm32f4xx_it.c">
@@ -243,37 +237,22 @@
     <ClCompile Include="DigitalReadPin.cpp">
       <Filter>Source files</Filter>
     </ClCompile>
-    <ClCompile Include="$(EFP_BASE)\Profiler\FastSemihosting.cpp">
-      <Filter>Source files\Device-specific files\Semihosting/Profiler</Filter>
-    </ClCompile>
-    <ClCompile Include="$(EFP_BASE)\Profiler\SamplingProfiler.cpp">
-      <Filter>Source files\Device-specific files\Semihosting/Profiler</Filter>
-    </ClCompile>
-    <ClCompile Include="$(EFP_BASE)\Profiler\InstrumentingProfiler.cpp">
-      <Filter>Source files\Device-specific files\Semihosting/Profiler</Filter>
-    </ClCompile>
-    <ClCompile Include="$(EFP_BASE)\Profiler\ProfilerRTOS_FreeRTOS.c">
-      <Filter>Source files\Device-specific files\Semihosting/Profiler</Filter>
-    </ClCompile>
-    <ClInclude Include="$(EFP_BASE)\Profiler\SysprogsProfiler.h">
-      <Filter>Header files\Device-specific files\Semihosting/Profiler</Filter>
-    </ClInclude>
-    <ClInclude Include="$(EFP_BASE)\Profiler\SmallNumberCoder.h">
-      <Filter>Header files\Device-specific files\Semihosting/Profiler</Filter>
-    </ClInclude>
-    <ClInclude Include="$(EFP_BASE)\Profiler\SysprogsProfilerInterface.h">
-      <Filter>Header files\Device-specific files\Semihosting/Profiler</Filter>
-    </ClInclude>
-    <ClInclude Include="$(EFP_BASE)\Profiler\ProfilerFreeRTOSHooks.h">
-      <Filter>Header files\Device-specific files\Semihosting/Profiler</Filter>
-    </ClInclude>
-    <ClInclude Include="$(EFP_BASE)\Profiler\CustomRealTimeWatches.h">
-      <Filter>Header files\Device-specific files\Semihosting/Profiler</Filter>
-    </ClInclude>
     <ClCompile Include="Controller.cpp">
       <Filter>Source files</Filter>
     </ClCompile>
     <ClCompile Include="ControllerManager.cpp">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="DigitalWritePin.cpp">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="PwmWritePin.cpp">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="Moter.cpp">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="ServoC.c">
       <Filter>Source files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -294,6 +273,21 @@
       <Filter>Header files</Filter>
     </ClInclude>
     <ClInclude Include="ControllerManager.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="IWritePin.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="DigitalWritePin.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="PwmWritePin.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="Moter.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="ServoC.h">
       <Filter>Header files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -36,36 +36,9 @@
   </MCUProperties>
   <BSPSourceFolderName>Device-specific files</BSPSourceFolderName>
   <MCUMakFile>stm32.mak</MCUMakFile>
-  <ReferencedFrameworks>
-    <string>com.sysprogs.embedded.semihosting_and_profiler</string>
-  </ReferencedFrameworks>
+  <ReferencedFrameworks />
   <FrameworkProperties>
-    <Entries>
-      <KeyValue>
-        <Key>com.sysprogs.efp.semihosting.buffer_size</Key>
-        <Value>4096</Value>
-      </KeyValue>
-      <KeyValue>
-        <Key>com.sysprogs.efp.semihosting.stdio</Key>
-        <Value>1</Value>
-      </KeyValue>
-      <KeyValue>
-        <Key>com.sysprogs.efp.semihosting.blocking_mode</Key>
-        <Value>1</Value>
-      </KeyValue>
-      <KeyValue>
-        <Key>com.sysprogs.efp.profiling.semihosting_driver</Key>
-        <Value>1</Value>
-      </KeyValue>
-      <KeyValue>
-        <Key>com.sysprogs.efp.profiling.counter</Key>
-        <Value />
-      </KeyValue>
-      <KeyValue>
-        <Key>com.sysprogs.efp.profiling.nosampling</Key>
-        <Value>0</Value>
-      </KeyValue>
-    </Entries>
+    <Entries />
   </FrameworkProperties>
   <TestFrameworkProperties>
     <Entries />
@@ -76,7 +49,7 @@
     <AllDependencies>
       <ProjectDependency>
         <RelativePath>shake.gpdsc</RelativePath>
-        <Timestamp>131747492082961357</Timestamp>
+        <Timestamp>131748795143380628</Timestamp>
       </ProjectDependency>
     </AllDependencies>
     <RootDirectory>

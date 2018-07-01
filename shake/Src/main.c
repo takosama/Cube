@@ -1,4 +1,3 @@
-#include <SysprogsProfiler.h>
 
 /**
   ******************************************************************************
@@ -40,12 +39,11 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "stm32f4xx_hal.h"
-#include "CtoCpp.h"
-#include "CppMain.h"
-#include "stdlib.h"
 
 /* USER CODE BEGIN Includes */
-
+#include "CtoCpp.h"
+#include "CppMain.h"
+#include "ServoC.h"
 /* USER CODE END Includes */
 
 /* Private variables ---------------------------------------------------------*/
@@ -56,7 +54,6 @@ TIM_HandleTypeDef htim13;
 
 /* USER CODE BEGIN PV */
 /* Private variables ---------------------------------------------------------*/
-
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -78,7 +75,35 @@ void HAL_TIM_MspPostInit(TIM_HandleTypeDef *htim);
 /* USER CODE END PFP */
 
 /* USER CODE BEGIN 0 */
-
+int now = 0;
+int cnt = 0;
+void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
+{
+	if (htim->Instance == TIM4)
+	{
+		cnt++;
+		if (now == 0)
+		{
+			if (cnt >2000)
+			{
+				cnt = 0;
+				htim->Instance->CCR1 = 10;
+				now = 1;
+			}
+		}
+		else if (now == 1)
+		{
+			if(cnt>Servo1_Pow)
+			{
+		//		if (Servo1_Pow == 70)Servo1_Pow = 50;
+			//	Servo1_Pow++;
+				cnt = 0;
+				htim->Instance->CCR1 = 0;
+				now = 0;
+			}
+		}
+	}
+}
 /* USER CODE END 0 */
 
 /**
@@ -96,7 +121,6 @@ int main(void)
 
   /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
   HAL_Init();
-  InitializeInstrumentingProfiler();
 
   /* USER CODE BEGIN Init */
 
@@ -116,19 +140,33 @@ int main(void)
   MX_TIM4_Init();
   MX_TIM13_Init();
   /* USER CODE BEGIN 2 */
-  ControlerPinsArray[ControlerPins_IsServo]=CtoCppGPIOInit(swich1_GPIO_Port,swich1_Pin);
+	ControlerPinsArray[ControlerPins_IsServo] = CtoCppGPIOInit(swich1_GPIO_Port, swich1_Pin);
+
+	ControlerPinsArray[ControlerPins_Speed4] = CtoCppGPIOInit(swich2_GPIO_Port, swich2_Pin);
+	ControlerPinsArray[ControlerPins_Speed2] = CtoCppGPIOInit(swich3_GPIO_Port, swich3_Pin);
+	ControlerPinsArray[ControlerPins_Speed1] = CtoCppGPIOInit(swich4_GPIO_Port, swich4_Pin);
+
+	ControlerPinsArray[ControlerPins_Up] = CtoCppGPIOInit(swich5_GPIO_Port, swich5_Pin);
+	ControlerPinsArray[ControlerPins_Down] = CtoCppGPIOInit(swich7_GPIO_Port, swich7_Pin);
+	ControlerPinsArray[ControlerPins_Left] = CtoCppGPIOInit(swich11_GPIO_Port, swich11_Pin);
+	ControlerPinsArray[ControlerPins_Right] = CtoCppGPIOInit(swich6_GPIO_Port, swich6_Pin);
+
+	ControlerPinsArray[ControlerPins_Hi] = CtoCppGPIOInit(swich10_GPIO_Port, swich10_Pin);
+	ControlerPinsArray[ControlerPins_Lo] = CtoCppGPIOInit(swich9_GPIO_Port, swich9_Pin);
 
 
-ControlerPinsArray[ControlerPins_Speed1]= CtoCppGPIOInit(swich2_GPIO_Port, swich2_Pin);
-ControlerPinsArray[ControlerPins_Speed2]= CtoCppGPIOInit(swich3_GPIO_Port, swich3_Pin);
-ControlerPinsArray[ControlerPins_Speed4]= CtoCppGPIOInit(swich4_GPIO_Port, swich4_Pin);
-ControlerPinsArray[ControlerPins_Up	  ]= CtoCppGPIOInit(swich5_GPIO_Port, swich5_Pin);
-ControlerPinsArray[ControlerPins_Down  ]= CtoCppGPIOInit(swich7_GPIO_Port, swich7_Pin);
-ControlerPinsArray[ControlerPins_Left  ]= CtoCppGPIOInit(swich11_GPIO_Port, swich11_Pin);
-ControlerPinsArray[ControlerPins_Right ]= CtoCppGPIOInit(swich6_GPIO_Port, swich6_Pin);
-ControlerPinsArray[ControlerPins_Hi	  ]= CtoCppGPIOInit(swich10_GPIO_Port, swich10_Pin);
-ControlerPinsArray[ControlerPins_Lo]	   = CtoCppGPIOInit(swich9_GPIO_Port, swich9_Pin);
-  CppSetUp();
+	MoterDirPinsArray[MoterDirPins_Dir1] = CtoCppGPIOInit(motor1_DIR_GPIO_Port, motor1_DIR_Pin);
+	MoterDirPinsArray[MoterDirPins_Dir2] = CtoCppGPIOInit(motor2_DIR_GPIO_Port, motor2_DIR_Pin);
+	MoterDirPinsArray[MoterDirPins_Dir3] = CtoCppGPIOInit(motor3_DIR_GPIO_Port, motor3_DIR_Pin);
+
+	MoterPwmPinsArray[MoterPwmPins_Pwm1] = CtoCppPwmGPIOInit(&htim3, TIM_CHANNEL_3);
+	MoterPwmPinsArray[MoterPwmPins_Pwm2] = CtoCppPwmGPIOInit(&htim3, TIM_CHANNEL_1);
+	MoterPwmPinsArray[MoterPwmPins_Pwm3] = CtoCppPwmGPIOInit(&htim2, TIM_CHANNEL_2);
+
+	CppSetUp();
+	HAL_TIM_Base_Start_IT(&htim4);
+
+	HAL_TIM_PWM_Start(&htim4, TIM_CHANNEL_1);
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -303,9 +341,9 @@ static void MX_TIM4_Init(void)
   TIM_OC_InitTypeDef sConfigOC;
 
   htim4.Instance = TIM4;
-  htim4.Init.Prescaler = 6;
+  htim4.Init.Prescaler = 90;
   htim4.Init.CounterMode = TIM_COUNTERMODE_UP;
-  htim4.Init.Period = 1024;
+  htim4.Init.Period = 10;
   htim4.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
   if (HAL_TIM_PWM_Init(&htim4) != HAL_OK)
   {
