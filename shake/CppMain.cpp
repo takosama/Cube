@@ -6,12 +6,18 @@
 #include "Moter.h"
 #include "ServoC.h"
 
+
+
+
 Controller* controller;
 Moter* moterLeftRight;
-Moter* MoterFrontBack;
+Moter* MoterFrontBack; 
 Moter* MoterHiLo;
 void CppSetUp()
 {
+	
+
+
 	ControllerManager manager;
 	controller = manager.CreateController();
 
@@ -23,6 +29,8 @@ void CppSetUp()
 
 	MoterHiLo = new Moter(new DigitalWritePin(&MoterDirPinsArray[MoterDirPins_Dir3]),
 		new PwmWritePin(&MoterPwmPinsArray[MoterPwmPins_Pwm3]));
+
+
 
 }
 
@@ -37,6 +45,9 @@ void CppLoop()
 
 		printf("%d %d\n", controller->ReadStatus(ControlerPins::ControlerPins_Up),
 			controller->ReadStatus(ControlerPins::ControlerPins_Down));
+
+
+
 
 		
 		const auto speedf = 1.0f / 7.0f* speed;
@@ -67,9 +78,6 @@ void CppLoop()
 	}
 	else
 	{
-		MoterHiLo->Move((0));
-		MoterFrontBack->Move((0));
-		moterLeftRight->Move((0));
-		Servo1_Pow = ( 105-87)*(1.0f/7.0f)* speed+87;
+		
 	}
 }

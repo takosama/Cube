@@ -215,7 +215,7 @@ void SystemClock_Config(void)
   {
     _Error_Handler(__FILE__, __LINE__);
   }
-
+  
     /**Activate the Over-Drive mode 
     */
   if (HAL_PWREx_EnableOverDrive() != HAL_OK)

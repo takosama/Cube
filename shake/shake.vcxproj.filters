@@ -88,6 +88,9 @@
     <Filter Include="VisualGDB settings">
       <UniqueIdentifier>{088f65bf-4d9f-4b92-8b5d-e6966017d040}</UniqueIdentifier>
     </Filter>
+    <Filter Include="1b4cc692-71d4-497b-bfe2-31a9fe30cabe">
+      <UniqueIdentifier>{803f122c-ba9b-4c4d-abb1-ae736b3ff659}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Src\stm32f4xx_it.c">
